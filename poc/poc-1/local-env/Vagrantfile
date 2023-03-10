@@ -15,7 +15,9 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     echo "sudo su -" >> .bashrc
   SHELL
-  (1..3).each do |i|
+
+
+  (1..1).each do |i|
     config.vm.define "node#{i}" do |node|
       node.vm.hostname="node-worker-#{i}"
       config.vm.provider "vmware_workstation" do |vb|
@@ -26,10 +28,21 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  (4..6).each do |i|
-    config.vm.define "node#{i}" do |node|
-      node.vm.hostname="node-master-#{i}"
-    end
-  end
+#  (1..3).each do |i|
+#    config.vm.define "node#{i}" do |node|
+#      node.vm.hostname="node-worker-#{i}"
+#      config.vm.provider "vmware_workstation" do |vb|
+#        vb.gui = false
+#        vb.memory = 3072
+#        vb.cpus = 3
+#      end
+#    end
+#  end
+#
+#  (4..6).each do |i|
+#    config.vm.define "node#{i}" do |node|
+#      node.vm.hostname="node-master-#{i}"
+#    end
+#  end
 
 end
